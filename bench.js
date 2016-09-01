@@ -11,4 +11,4 @@ bench([
   function runFastzalgo (cb) {
     fastzalgo(cb)()
   }
-], 1000000)()
+], 10000000)()

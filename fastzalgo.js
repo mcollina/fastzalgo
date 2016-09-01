@@ -1,25 +1,46 @@
 'use strict'
 
+const reusify = require('reusify')
+const pool = reusify(Pony)
+
 function fastzalgo (func) {
-  var sync = true
+  const pony = pool.get()
+  pony.func = func
+  process.nextTick(pony.resync)
+  return pony.dezalgo
+}
 
-  process.nextTick(function () {
-    sync = false
-  })
+function Pony () {
+  this.next = null
+  this.func = null
+  this.sync = true
 
-  return function () {
+  var that = this
+
+  this.dezalgo = function dezalgo () {
     var array = new Array(arguments.length)
     for (var i = 0; i < arguments.length; i++) {
       array[i] = arguments[i]
     }
 
-    if (sync) {
-      array.unshift(func)
-      process.nextTick.apply(null, array)
+    if (that.sync) {
+      process.nextTick(callFunc, that, this, array)
     } else {
-      func.apply(null, array)
+      callFunc(that, this, array)
     }
   }
+
+  this.resync = function resync () {
+    that.sync = false
+  }
+}
+
+function callFunc (pony, me, array) {
+  const func = pony.func
+  pony.func = null
+  pony.sync = true
+  pool.release(pony)
+  func.apply(me, array)
 }
 
 module.exports = fastzalgo
