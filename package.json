@@ -1,6 +1,6 @@
 {
   "name": "fastzalgo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Dezalgo at top speed",
   "main": "fastzalgo.js",
   "scripts": {
