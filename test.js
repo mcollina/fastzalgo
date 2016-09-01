@@ -4,17 +4,19 @@ const test = require('tap').test
 const fastzalgo = require('.')
 
 test('make async', function (t) {
-  t.plan(3)
+  t.plan(5)
 
   var isAsync = false
   var called = false
 
-  function foo () {
+  function foo (a, b) {
     t.ok(isAsync, 'is async')
+    t.equal(a, 'a')
+    t.equal(b, 'b')
     called = true
   }
 
-  fastzalgo(foo)()
+  fastzalgo(foo)('a', 'b')
 
   isAsync = true
 
@@ -25,17 +27,19 @@ test('make async', function (t) {
 })
 
 test('do nothing if async', function (t) {
-  t.plan(3)
+  t.plan(5)
 
   var isAsync = false
   var called = false
 
-  function foo () {
+  function foo (a, b) {
     t.ok(isAsync, 'is async')
+    t.equal(a, 'a')
+    t.equal(b, 'b')
     called = true
   }
 
-  process.nextTick(fastzalgo(foo))
+  process.nextTick(fastzalgo(foo), 'a', 'b')
 
   isAsync = true
 
