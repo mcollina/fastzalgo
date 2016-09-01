@@ -1,0 +1,33 @@
+{
+  "name": "fastzalgo",
+  "version": "0.0.1",
+  "description": "Dezalgo at top speed",
+  "main": "fastzalgo.js",
+  "scripts": {
+    "test": "standard && tap test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcollina/fastzalgo.git"
+  },
+  "keywords": [
+    "dezalgo",
+    "zalgo",
+    "async",
+    "fast",
+    "once"
+  ],
+  "author": "Matteo Collina <hello@matteocollina.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcollina/fastzalgo/issues"
+  },
+  "homepage": "https://github.com/mcollina/fastzalgo#readme",
+  "devDependencies": {
+    "dezalgo": "^1.0.3",
+    "fastbench": "^1.0.1",
+    "pre-commit": "^1.1.3",
+    "standard": "^8.0.0",
+    "tap": "^7.0.0"
+  }
+}
